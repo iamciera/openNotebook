@@ -1,15 +1,30 @@
 # Parameters
 
-## Parameters 
+## Data 
 
 * N number of transcription factors (TF)
-* n number of transcription factor binding sites (TFBS) (PWM scores and Chip-seq)
+* n number of transcription factor binding sites (TFBS) (PWM scores and Chip-seq) 
 * validation score per TFBS)
 * 7 Species
 * 3 Species Complex (auraia, kikkawai, serrata)
 * 6 developmental age
 * 27 regions (227 specific)
 * 27 (to start) or 3557(try) expression signal during embryogenesis.
+
+---
+
+## Parameters
+
+From [Kim et al. 2013]()
+
+binding of TFs - for instance set PWM value and only include if a certain threshold is achieved. 
+steric competition between bound factors (overlapping)
+cooperative binding of TFs to DNA 
+activation 
+short-range repression (also called ‘quenching’)
+direct repression, 
+coactivation 
+
 
 ---
 

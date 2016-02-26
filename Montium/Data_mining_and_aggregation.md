@@ -1,5 +1,9 @@
 # Data_mining_and_aggregation
 
+Over all goal: To find molecular logic of gene regulation.
+
+Using the Kvon Data assumption: That the enhancers have similar funtion across species. Find the common principles that unite them what divergence patterns are allowd. 
+
 ## Kvon Data
 
 Publication: [Kvon et al., 2014](http://www.nature.com/nature/journal/v512/n7512/full/nature13395.html)
