@@ -1,5 +1,38 @@
 # Using_liftOver_to_retrieve sequences
 
+# Success
+
+To start you should have:
+
+1. chain file (one for each **species of interest**)
+2. .bed file with **regions of interest** from *Drosophila melanogastor*
+3. **species of interest** assembly file
+
+### Workflow 
+
+**Step 1**: Use `liftOver` to translate regions of interest from *D. melanogastor* to species of interest. In directory with chain file, use this example command: 
+
+    ~/programs/liftOver/liftOver -minMatch=0.1 -multiple ~/data/testBED.bed Dmel_to_MEMB002A.over.chain ~/data/testOutput.bed ~/data/testUnlifted.bed
+
+Output is put into the file `testOutput.bed`.  If you check this file it will tell you how many regions were translated.  They are labelled in the last column of the output .bed file. Also check how many sequences were not lifted in the `testUnlifted.bed` file.
+
+**Step 2**: Use `bedtools` `fastaFromBed` tool to get sequences in .fasta format from the **species of interest**. Make sure you copy the original .fa file into a folder with write privileges. Run this example command
+
+    fastaFromBed -fi MEMB002A_velvet_gap_closer_reapr_pipeline_break_default_gap_closer_1kbplus_upper_short_header.fa -bed testOutput.bed -fo testOutput.fasta
+
+## Problems
+
+The overall goal is to get all this information back into the large database.
+
+1. The output fasta entry name does not match anything from the database. Although in the intermediate .bed file, the original id name is there. So that could be used as an intermediate step.....
+2. When you perform liftOver you often get multiple sequence matches. Make sure you understand what is going on here. 
+3. The sequences are going to be different lengths for every species. 
+
+The key is to really specify how you want to be able to use this database....
+
+
+# How I got to Success
+
 ## liftOver
 
 Program that allows you to move annotations from one assembly to another. This tool converts genome coordinates and genome annotation files between assemblies. 
@@ -86,3 +119,5 @@ This was repeated many times.  It is thinking that the first column is a chromos
     22015_130691_13.243315  23991   24613   VT0016  1
     
 Question: Where in the hell did that first column id come from? Maybe the chain????  Answer: yes.
+
+Got stuck and asked Mike.  Turns out this wouldn't have worked because the names don't match and these assemblies contain such small scaffolds.  Mike gave me other assemblies that have to be at least 99 bp.  They are place in `montium_data_ciera_new_assemblies`. 
